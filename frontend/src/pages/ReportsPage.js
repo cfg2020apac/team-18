@@ -13,13 +13,22 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 import {VolunteerEventChart} from '../components/VolunteerEventChart'
 
-const data = [
-  { id: 'd1', eventName: 'Elder Academy', volunteerAttendance: 23 },
+const eventData = [
+  { id: 'd1', eventName: 'Elder Academy', volunteerAttendance: 23},
   { id: 'd2', eventName: 'Blood Donation Drive', volunteerAttendance: 6 },
   { id: 'd3', eventName: '5k Marathon', volunteerAttendance: 17 },
   { id: 'd4', eventName: 'Teach Young', volunteerAttendance: 12 },
   { id: 'd4', eventName: 'Lupus Awareness', volunteerAttendance: 5 }
 ];
+
+const volunteerData = [
+  {name: "Amy Chan", email: "amyc@gmail.com", age: 17, gender: "female", language: "Chinese", skills: ["IT"], interests: ["food", "animals"] },
+  {name: "John Stone", email: "js@gmail.com", age: 27, gender: "male", language: "English", skills: ["IT", "Finance"], interests: ["food", "elderly"] },
+  {name: "Emily Wong", email: "ew@gmail.com", age: 42, gender: "other", language: "Both", skills: ["Teaching"], interests: ["homeless","animals"] },
+  {name: "Jane Doe", email: "jd@gmail.com", age: 19, gender: "female", language: "Chinese", skills: ["Finance", "Art"], interests: ["food", "homeless"] },
+  {name: "Jack Frost", email: "jf@gmail.com", age: 45, gender: "male", language: "Both", skills: ["IT"], interests: ["food", "animals"] },
+]
+
 
 
 export const ReportsPage = () => {
@@ -27,7 +36,7 @@ export const ReportsPage = () => {
   return (<div>
     <Button onClick={()=>setOpenBar(!openBar)}>Open Bar</Button>
     {openBar && 
-      <VolunteerEventChart data={data}></VolunteerEventChart>
+      <VolunteerEventChart data={eventData}></VolunteerEventChart>
     }
   </div>)
 }
