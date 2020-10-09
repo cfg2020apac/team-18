@@ -9,6 +9,7 @@ export const VolunteerEventChart = (props) => {
       id="event"
       palette="Bright"
       dataSource={props.data}
+      title="Volunteer Attendance"
       >
       <CommonSeriesSettings
         argumentField="eventName"
@@ -18,7 +19,7 @@ export const VolunteerEventChart = (props) => {
       />
       <SeriesTemplate nameField="eventName" />
       <Title
-        title="Volunteer Attendance"
+       
         subtitle="as of October 2020"
       />
     </Chart>

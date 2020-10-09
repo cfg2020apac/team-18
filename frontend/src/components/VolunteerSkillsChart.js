@@ -39,6 +39,7 @@ export const VolunteerSkillsChart = (props) => {
     id="event"
     palette="Bright"
     dataSource={parseData(props.data)}
+    title="Volunteer Distribution by Skills"
     >
     <CommonSeriesSettings
       argumentField="skills"
@@ -48,7 +49,6 @@ export const VolunteerSkillsChart = (props) => {
     />
     <SeriesTemplate nameField="skills" />
     <Title
-      title="Volunteer Distribution by Skills"
       subtitle="as of October 2020"
     />
   </Chart>
