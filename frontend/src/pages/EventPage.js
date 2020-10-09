@@ -43,18 +43,28 @@ const columns = [
     valueGetter: (params) =>
       `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
   },
+  {
+    field: "gender",
+    headerName: 'Gender',
+    width: 90,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 200,
+  }
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, gender: "male", skills:["IT", "Finance", "Art"] },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, gender: "female", skills:["Teaching", "Art"] },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45,gender: "other", skills:["Teaching"] },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16,gender: "female", skills:["IT"] },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 35,gender: "female", skills:["Art"] },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150,gender: "non-binary", skills:["IT","Art"] },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44,gender: "other", skills:["Art"] },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36,gender: "other", skills:["IT", "Art"] },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65,gender: "male", skills:["Finance", "Teaching"] },
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, gender: "male", email: "sample@gmail.com", skills:["IT", "Finance", "Art"] },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, gender: "female", email: "sample@gmail.com", skills:["Teaching", "Art"] },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45,gender: "other", email: "sample@gmail.com", skills:["Teaching"] },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16,gender: "female", email: "sample@gmail.com", skills:["IT"] },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 35,gender: "female", email: "sample@gmail.com", skills:["Art"] },
+  { id: 6, lastName: 'Melisandre', firstName: null, age: 150,gender: "non-binary", email: "sample@gmail.com", skills:["IT","Art"] },
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44,gender: "other", email: "sample@gmail.com", skills:["Art"] },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36,gender: "other", email: "sample@gmail.com", skills:["IT", "Art"] },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65,gender: "male", email: "sample@gmail.com", skills:["Finance", "Teaching"] },
 ];
 
 // const event = {
