@@ -21,7 +21,7 @@ import EventsDataService from "../services/events.services";
 import {EventBulletChart} from '../components/EventBulletChart'
 import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
 import {VolunteerSkillsChart} from '../components/VolunteerSkillsChart'
-
+import axios from 'axios'
 const modelDesc = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
 
 const columns = [
@@ -171,8 +171,17 @@ export const EventPage = () => {
     setEventReport(true)
   }
 
-  const handleSendEmails = () => {
+  const handleSendEmails = async () => {
     console.log("Emails sent !");
+    await axios.post("http://localhost:5000/sendEmail", null, {params: {
+      ngoName: "Rotary Club",
+      volunteerName: "Kartik",
+      dateAndTime: "18:00+12+October+2020",
+      location: "Central+MTR+Station",
+      dest: "bathla.kartik99@gmail.com"
+    }})
+    console.log("Success")
+//http://localhost:5000/sendEmail?ngoName=Rotary+Club&volunteerName=Kartik&dateAndTime=18:00+12+October+2020&location=Central+MTR+Station&dest=bathla.kartik99@gmail.com
   }
 
   const handleSelectionChange = (selections) => {
