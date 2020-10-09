@@ -12,6 +12,7 @@ import { HomePage } from "./pages/HomePage";
 import { EventPage } from "./pages/EventPage";
 import { EventsPage } from "./pages/EventsPage";
 import { ReportsPage } from "./pages/ReportsPage";
+import { AddDataPage } from "./pages/AddDataPage";
 import { Sidebar } from "./components/Sidebar";
 import { MuiThemeProvider, createMuiTheme, makeStyles, createStyles } from "@material-ui/core/styles";
 import { CssBaseline, Drawer, Divider, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core"; 
@@ -46,6 +47,10 @@ const renderEventPage = (props) => {
   return <EventPage {...props}/>
 }
 
+const renderAddDataPage = (props) => {
+  return <AddDataPage {...props}/>
+}
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     content: {
@@ -68,9 +73,10 @@ export const App = () => {
           <Router>
             <Sidebar />
             <Switch>
-              <Route exact={true} path="/home" render={renderHomePage} />
+              <Route exact={true} path="/" render={renderHomePage} />
               <Route exact={true} path="/events" render={renderEventsPage} />
               <Route exact={true} path="/reports" render={renderReportsPage} />
+              <Route exact={true} path="/import_data" render={renderAddDataPage} />
               <Route exact={true} path="/events/:eventId" render={renderEventPage} />
               <Redirect exact={true} from="/" to="/home" />
             </Switch>

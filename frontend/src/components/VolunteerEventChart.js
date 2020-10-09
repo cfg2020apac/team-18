@@ -1,21 +1,28 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Chart, Series } from 'devextreme-react/chart';
+import { Chart, SeriesTemplate, CommonSeriesSettings, Title } from 'devextreme-react/chart';
 
 
 export const VolunteerEventChart = (props) => {
   return (
-    <div>
-      <Paper>
-      <Chart id="skills" dataSource={props.data} title = "Volunteer Event Chart">
-        <Series
-          valueField="volunteerAttendance"
-          argumentField="eventName"
-          name="Volunteer Attendance by Event"
-          type="bar"
-          color="#ffaa44" />
-      </Chart>
-      </Paper>
-    </div>
+    <Chart
+      id="event"
+      palette="Bright"
+      dataSource={props.data}
+      >
+      <CommonSeriesSettings
+        argumentField="eventName"
+        valueField="volunteerAttendance"
+        type="bar"
+        ignoreEmptyPoints={true}
+      />
+      <SeriesTemplate nameField="eventName" />
+      <Title
+        title="Volunteer Attendance"
+        subtitle="as of October 2020"
+      />
+    </Chart>
+    
   )
 }
+
