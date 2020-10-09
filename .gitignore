@@ -6,3 +6,5 @@ Team*.zip
 *.ovpn
 Team *
 node_modules/
+emailSender/node_modules/
+functions/node_modules/
