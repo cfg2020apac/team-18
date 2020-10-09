@@ -10,6 +10,14 @@ import {
   ValueAxis,
 } from '@devexpress/dx-react-chart-material-ui';
 
+import { Box, Card, Container, Divider } from "@material-ui/core";
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  useTheme,
+} from "@material-ui/core/styles";
+
 import { Animation } from '@devexpress/dx-react-chart';
 import {VolunteerEventChart} from '../components/VolunteerEventChart'
 import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
@@ -32,6 +40,26 @@ const volunteerData = [
   {name: "Jack Frost", email: "jf@gmail.com", age: 45, gender: "male", language: "Both", skills: ["IT"], interests: ["food", "animals"] },
 ]
 
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    card: {
+      margin: 50,
+    },
+    title: {
+      margin: 50,
+      textAlign: "left",
+      // color: "#f44336",
+      fontWeight: "bold",
+      fontSize: 50,
+    },
+    box: {
+      outline: "2px dotted gray",
+      padding: 5,
+      marginBottom: 10,
+    }
+  })
+);
+
 
 
 export const ReportsPage = () => {
@@ -40,28 +68,45 @@ export const ReportsPage = () => {
   const [openAge, setOpenAge] = useState(false);
   const [openSkills, setOpenSkills] = useState(false);
   const [openLang, setOpenLang] = useState(false);
-  return (<div>
-    <Button onClick={()=>setOpenEvent(!openEvent)}>Event Participation</Button>
-    {openEvent && 
-      <VolunteerEventChart data={eventData}></VolunteerEventChart>
-    }
-    <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Volunteer Gender Ratio</Button>
-    {openGenderPie && 
-      <VolunteerGenderChart data={volunteerData}></VolunteerGenderChart>
-    }
-    <Button onClick={()=>setOpenAge(!openAge)}>View Volunteer Age </Button>
-    {openAge && 
-      <VolunteerAgeChart data={volunteerData}></VolunteerAgeChart>
-    }
-    <Button onClick={()=>setOpenLang(!openLang)}>Volunteer Languages</Button>
-    {openLang && 
-      <VolunteerLanguageChart data={volunteerData}></VolunteerLanguageChart>
-    }
-    <Button onClick={()=>setOpenSkills(!openSkills)}>Volunteer Skills</Button>
-    {openSkills && 
-      <VolunteerSkillsChart data={volunteerData}></VolunteerSkillsChart>
-    }
-  </div>)
+
+  const classes = useStyles();
+  return (
+    <div>
+      <Container className={classes.title}>
+        Annual Reports
+      </Container>
+      <Box className={classes.box}>
+        <Button onClick={()=>setOpenEvent(!openEvent)}>Event Participation</Button>
+        {openEvent && 
+          <VolunteerEventChart data={eventData}></VolunteerEventChart>
+        }
+      </Box>
+      <Box className={classes.box}>
+        <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Volunteer Gender Ratio</Button>
+        {openGenderPie && 
+          <VolunteerGenderChart data={volunteerData}></VolunteerGenderChart>
+        }
+      </Box>
+      <Box className={classes.box}>
+        <Button onClick={()=>setOpenAge(!openAge)}>View Volunteer Age </Button>
+        {openAge && 
+          <VolunteerAgeChart data={volunteerData}></VolunteerAgeChart>
+        }
+      </Box>
+      <Box className={classes.box}>
+        <Button onClick={()=>setOpenLang(!openLang)}>Volunteer Languages</Button>
+        {openLang && 
+          <VolunteerLanguageChart data={volunteerData}></VolunteerLanguageChart>
+        }
+      </Box>
+      <Box className={classes.box}>
+        <Button onClick={()=>setOpenSkills(!openSkills)}>Volunteer Skills</Button>
+        {openSkills && 
+          <VolunteerSkillsChart data={volunteerData}></VolunteerSkillsChart>
+        }
+      </Box>
+    </div>
+  )
 }
 
 
