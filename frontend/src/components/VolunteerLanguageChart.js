@@ -26,7 +26,7 @@ const parseData = (data) => {
     }
     return listOfLanguage.map((val)=>{
         return {
-            gender: val,
+            language: val,
             num: languageNums[val]
         }
     })
@@ -36,7 +36,7 @@ export const VolunteerLanguageChart = (props) => {
         return (
             <div>
               <Paper>
-                <PieChart id="language" dataSource={parseData(props.data)} palette="bright" title="Volunteer Language Demographics" >
+                <PieChart id="language" dataSource={parseData(props.data)} palette="Bright" title="Volunteer Language Demographics" >
                     <Series argumentField="language" valueField="num">
                         <Label visible={true}>
                             <Connector visible={true} width={1}/>
