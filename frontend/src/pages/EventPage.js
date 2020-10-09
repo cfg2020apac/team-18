@@ -18,6 +18,9 @@ import {
   useParams
 } from "react-router-dom";
 import EventsDataService from "../services/events.services";
+import {EventBulletChart} from '../components/EventBulletChart'
+import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
+import {VolunteerSkillsChart} from '../components/VolunteerSkillsChart'
 
 const modelDesc = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
 
@@ -43,15 +46,15 @@ const columns = [
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, gender: "male", skills:["IT", "Finance", "Art"] },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, gender: "female", skills:["Teaching", "Art"] },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45,gender: "other", skills:["Teaching"] },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16,gender: "female", skills:["IT"] },
+  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 35,gender: "female", skills:["Art"] },
+  { id: 6, lastName: 'Melisandre', firstName: null, age: 150,gender: "non-binary", skills:["IT","Art"] },
+  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44,gender: "other", skills:["Art"] },
+  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36,gender: "other", skills:["IT", "Art"] },
+  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65,gender: "male", skills:["Finance", "Teaching"] },
 ];
 
 // const event = {
@@ -142,8 +145,10 @@ export const EventPage = () => {
   const [event, setEvent] = useState(null);
   const [data, setData] = useState([]);
   const [selection, setSelection] = useState([]);
+
   const params = useParams();
   const eventId = params.eventId;
+  const [eventReport, setEventReport] = useState(false)
 
   const handleGenerateVolunteers = () => {
     setData(rows);
@@ -153,6 +158,7 @@ export const EventPage = () => {
 
   const handleGenerateEventReport = () => {
     console.log("Report generated !")
+    setEventReport(true)
   }
 
   const handleSendEmails = () => {
@@ -327,6 +333,14 @@ export const EventPage = () => {
             </Button>
           </>
         }
+        {eventReport && 
+          <div>
+            <EventBulletChart value={30} target={27} color={tagColors[3]}/>
+            <br/>
+            <VolunteerGenderChart data={rows}/>
+            <br/>
+            <VolunteerSkillsChart data={rows}/>
+          </div>}
       </div>
     :
     <CircularProgress />}
