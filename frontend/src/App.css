@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.rbc-calendar {
+  min-height: 500px ;
+}
