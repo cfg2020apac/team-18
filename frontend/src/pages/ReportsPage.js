@@ -12,6 +12,7 @@ import {
 
 import { Animation } from '@devexpress/dx-react-chart';
 import {VolunteerEventChart} from '../components/VolunteerEventChart'
+import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
 
 const eventData = [
   { id: 'd1', eventName: 'Elder Academy', volunteerAttendance: 23},
@@ -25,7 +26,7 @@ const volunteerData = [
   {name: "Amy Chan", email: "amyc@gmail.com", age: 17, gender: "female", language: "Chinese", skills: ["IT"], interests: ["food", "animals"] },
   {name: "John Stone", email: "js@gmail.com", age: 27, gender: "male", language: "English", skills: ["IT", "Finance"], interests: ["food", "elderly"] },
   {name: "Emily Wong", email: "ew@gmail.com", age: 42, gender: "other", language: "Both", skills: ["Teaching"], interests: ["homeless","animals"] },
-  {name: "Jane Doe", email: "jd@gmail.com", age: 19, gender: "female", language: "Chinese", skills: ["Finance", "Art"], interests: ["food", "homeless"] },
+  {name: "Jane Doe", email: "jd@gmail.com", age: 19, gender: "non-binary", language: "Chinese", skills: ["Finance", "Art"], interests: ["food", "homeless"] },
   {name: "Jack Frost", email: "jf@gmail.com", age: 45, gender: "male", language: "Both", skills: ["IT"], interests: ["food", "animals"] },
 ]
 
@@ -33,10 +34,15 @@ const volunteerData = [
 
 export const ReportsPage = () => {
   const [openBar, setOpenBar] = useState(false);
+  const [openGenderPie, setOpenGenderPie] = useState(false);
   return (<div>
     <Button onClick={()=>setOpenBar(!openBar)}>Open Bar</Button>
     {openBar && 
       <VolunteerEventChart data={eventData}></VolunteerEventChart>
+    }
+    <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Open Pie</Button>
+    {openGenderPie && 
+      <VolunteerGenderChart data={volunteerData}></VolunteerGenderChart>
     }
   </div>)
 }
