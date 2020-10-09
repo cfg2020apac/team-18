@@ -7,7 +7,7 @@ export const VolunteerEventChart = (props) => {
   return (
     <div>
       <Paper>
-      <Chart id="skills" dataSource={props.data}>
+      <Chart id="skills" dataSource={props.data} title = "Volunteer Event Chart">
         <Series
           valueField="volunteerAttendance"
           argumentField="eventName"

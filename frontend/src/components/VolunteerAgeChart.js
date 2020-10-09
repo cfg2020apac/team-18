@@ -38,7 +38,7 @@ export const VolunteerAgeChart = (props) => {
   return (
     <div>
       <Paper>
-      <Chart id="skills" dataSource={parseData(props.data)}>
+      <Chart id="skills" dataSource={parseData(props.data)} title = "Volunteer Age Chart">
         <Series
           valueField="num"
           argumentField="ageRange"
