@@ -36,7 +36,7 @@ export const VolunteerGenderChart = (props) => {
         return (
             <div>
               <Paper>
-                <PieChart id="gender" dataSource={parseData(props.data)} palette="bright" title="Volunteer Gender Demographics" >
+                <PieChart id="gender" dataSource={parseData(props.data)} palette="Bright" title="Volunteer Gender Demographics" >
                     <Series argumentField="gender" valueField="num">
                         <Label visible={true}>
                             <Connector visible={true} width={1}/>

@@ -40,19 +40,19 @@ export const ReportsPage = () => {
   const [openAge, setOpenAge] = useState(false);
   const [openSkills, setOpenSkills] = useState(false);
   return (<div>
-    <Button onClick={()=>setOpenEvent(!openEvent)}>Open Event</Button>
+    <Button onClick={()=>setOpenEvent(!openEvent)}>Event Participation</Button>
     {openEvent && 
       <VolunteerEventChart data={eventData}></VolunteerEventChart>
     }
-    <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Open Pie</Button>
+    <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Volunteer Gender Ratio</Button>
     {openGenderPie && 
       <VolunteerGenderChart data={volunteerData}></VolunteerGenderChart>
     }
-    <Button onClick={()=>setOpenAge(!openAge)}>Open Age</Button>
+    <Button onClick={()=>setOpenAge(!openAge)}>View Volunteer Age </Button>
     {openAge && 
       <VolunteerAgeChart data={volunteerData}></VolunteerAgeChart>
     }
-    <Button onClick={()=>setOpenSkills(!openSkills)}>Open Skills</Button>
+    <Button onClick={()=>setOpenSkills(!openSkills)}>Volunteer Skills</Button>
     {openSkills && 
       <VolunteerSkillsChart data={volunteerData}></VolunteerSkillsChart>
     }
