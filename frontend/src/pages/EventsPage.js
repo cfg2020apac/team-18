@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme) =>
     },
     title: {
       margin: 50,
-      textAlign: "center",
-      color: "#f44336",
+      textAlign: "left",
+      // color: "#f44336",
       fontWeight: "bold",
       fontSize: 50,
     },

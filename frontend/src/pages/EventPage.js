@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import { Box, Button, Card, Chip, Container, Grid } from "@material-ui/core";
+import { Box, Button, Card, Chip, Container, Divider, Grid } from "@material-ui/core";
 import {
   createStyles,
   makeStyles,
@@ -46,17 +46,34 @@ const tags = [
   "epic",
   "animals",
   "exciting",
+  "epic",
+  "animals",
+  "exciting",
 ]
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     card: {
+      // marginTop: 50,
+      // marginBottom: 50,
+      // marginLeft: 25,
+      // marginRight: 25,
+      margin: 10,
+      borderRadius: 20,
+    },
+    cardWrapper: {
       margin: 50,
+      // marginRight: 100,
+    },
+    descCard: {
+      margin: 50,
+      backgroundColor: "#C9F3DE",
+      borderRadius: 20,
     },
     title: {
       margin: 50,
-      textAlign: "center",
-      color: "#f44336",
+      textAlign: "left",
+      // color: "#f44336",
       fontWeight: "bold",
       fontSize: 50,
     },
@@ -68,9 +85,25 @@ const useStyles = makeStyles((theme) =>
       color: "white",
       borderRadius: 30,
       marginBottom: 20,
+      marginTop: 20,
     },
     chip: {
       marginRight: 5,
+      marginBottom: 5,
+    },
+    fieldTitle: {
+      fontSize: 24,
+      marginBottom: 10,
+    },
+    tagTitle: {
+      fontSize: 24,
+      marginBottom: 10,
+    },
+    mailingListTitle: {
+      fontSize: 20,
+      fontWeight: "bold",
+      textAlign: "left",
+      marginBottom: 20,
     }
   })
 );
@@ -93,33 +126,73 @@ export const EventPage = () => {
       <Container className={classes.title}>
         Event 1
       </Container>
-      <Card className={classes.card}>
+      <Card className={classes.descCard}>
         <Grid container className={classes.fields}>
-          <Grid item xs={2}>
-            <b>Description :</b>
+          <Grid item xs={12} className={classes.fieldTitle}>
+            <b>Description</b>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={12}>
             "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
           </Grid>
         </Grid>
       </Card>
-      <Card className={classes.card}>
-        <Grid container className={classes.fields}>
-          <Grid item xs={2}>
-            <b>Tags :</b>
-          </Grid>
-          <Grid item xs={10}>
-          {tags.map((tag) => (
-            <Chip
-              className={classes.chip}
-              icon={<FaceIcon />}
-              label={tag}
-              color="primary"
-            />
-          ))}
-          </Grid>
+      <Grid container className={classes.cardWrapper}>
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            <Grid container className={classes.fields}>
+              <Grid item xs={12} className={classes.tagTitle}>
+                <b>Information</b>
+              </Grid>
+              <Grid item xs={6}>
+                Coordinator
+              </Grid>
+              <Grid item xs={6}>
+                J.P. Morgan
+              </Grid>
+              <Divider />
+              <Grid item xs={6}>
+                Coordinator email
+              </Grid>
+              <Grid item xs={6}>
+                jp@morgan.com
+              </Grid>
+              <Divider />
+              <Grid item xs={6}>
+                Start Date
+              </Grid>
+              <Grid item xs={6}>
+                17th Jan 2020
+              </Grid>
+              <Divider />
+              <Grid item xs={6}>
+                End Date
+              </Grid>
+              <Grid item xs={6}>
+                18th Jan 2020
+              </Grid>
+            </Grid>
+          </Card>
         </Grid>
-      </Card>
+        <Grid item xs={5}>
+          <Card className={classes.card}>
+            <Grid container className={classes.fields}>
+              <Grid item xs={12} className={classes.tagTitle}>
+                <b>Tags</b>
+              </Grid>
+              <Grid item xs={12}>
+              {tags.map((tag) => (
+                <Chip
+                  className={classes.chip}
+                  icon={<FaceIcon />}
+                  label={tag}
+                  color="primary"
+                />
+              ))}
+              </Grid>
+            </Grid>
+          </Card>
+        </Grid>
+      </Grid>
       <Button
         variant="contained"
         color="primary"
@@ -130,9 +203,12 @@ export const EventPage = () => {
       </Button>
       {data.length !== 0 &&
         <>
+          <Container className={classes.mailingListTitle}>
+            Volunteer Mailing List
+          </Container>
           <Card className={classes.card}>
-            <div style={{ height: 400, width: '100%' }}>
-              <DataGrid rows={data} columns={columns} pageSize={5} checkboxSelection />
+            <div style={{ height: Math.min(data.length*65, 650), width: '100%' }}>
+              <DataGrid rows={data} columns={columns} pageSize={10} checkboxSelection />
             </div>
           </Card>
           <Button
