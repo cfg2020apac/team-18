@@ -88,7 +88,7 @@ export const ReportsPage = () => {
         }
       </Box>
       <Box className={classes.box}>
-        <Button onClick={()=>setOpenAge(!openAge)}>View Volunteer Age </Button>
+        <Button onClick={()=>setOpenAge(!openAge)}>View Volunteer Age and Interests</Button>
         {openAge && 
           <VolunteerAgeChart data={volunteerData}></VolunteerAgeChart>
         }

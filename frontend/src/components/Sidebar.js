@@ -91,12 +91,12 @@ export const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Import Data" />
         </ListItem>
-        <ListItem button key="voluteers" className={classes.listItem}>
+        {/* <ListItem button key="voluteers" className={classes.listItem}>
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary="Volunteers" />
-        </ListItem>
+        </ListItem> */}
       </List>
     </Drawer>
   )
