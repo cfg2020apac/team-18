@@ -14,30 +14,30 @@ import { Animation } from '@devexpress/dx-react-chart';
 //   { id: 'd4', eventName: 'Lupus Awareness', volunteerAttendance: 5 }
 // ];
 const parseData = (data) => {
-    let genderNums = {}
-    let listOfGender = []
+    let languageNums = {}
+    let listOfLanguage = []
     for(let volunteer of data){
-        if(genderNums[volunteer.gender]){
-            genderNums[volunteer.gender]+=1
+        if(languageNums[volunteer.language]){
+            languageNums[volunteer.language]+=1
         } else {
-            genderNums[volunteer.gender] = 1
-            listOfGender.push(volunteer.gender)
+            languageNums[volunteer.language] = 1
+            listOfLanguage.push(volunteer.language)
         }
     }
-    return listOfGender.map((val)=>{
+    return listOfLanguage.map((val)=>{
         return {
-            gender: val,
-            num: genderNums[val]
+            language: val,
+            num: languageNums[val]
         }
     })
 }
 
-export const VolunteerGenderChart = (props) => {
+export const VolunteerLanguageChart = (props) => {
         return (
             <div>
               <Paper>
-                <PieChart id="gender" dataSource={parseData(props.data)} palette="Bright" title="Volunteer Gender Demographics" >
-                    <Series argumentField="gender" valueField="num">
+                <PieChart id="language" dataSource={parseData(props.data)} palette="Bright" title="Volunteer Language Demographics" >
+                    <Series argumentField="language" valueField="num">
                         <Label visible={true}>
                             <Connector visible={true} width={1}/>
                         </Label>
@@ -50,6 +50,5 @@ export const VolunteerGenderChart = (props) => {
             </div>
           )
     }
-
 
 
