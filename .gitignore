@@ -1,6 +1,1 @@
-Team*.zip
-*.pem
-*.ppk
-*.crt
-*.key
-*.ovpn
+emailSender/node_modules/
