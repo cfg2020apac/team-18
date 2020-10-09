@@ -112,13 +112,20 @@ const useStyles = makeStyles((theme) =>
 export const EventPage = () => {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [selection, setSelection] = useState([]);
 
   const handleGenerateVolunteers = () => {
     setData(rows);
+    var scrollingElement = (document.scrollingElement || document.body);
+    scrollingElement.scrollTop = scrollingElement.scrollHeight;
   }
 
   const handleSendEmails = () => {
     console.log("Emails sent !");
+  }
+
+  const handleSelectionChange = (selections) => {
+    setSelection(selections);
   }
 
   return (
@@ -208,7 +215,13 @@ export const EventPage = () => {
           </Container>
           <Card className={classes.card}>
             <div style={{ height: Math.min(data.length*65, 650), width: '100%' }}>
-              <DataGrid rows={data} columns={columns} pageSize={10} checkboxSelection />
+              <DataGrid
+                rows={data}
+                columns={columns}
+                pageSize={10}
+                onSelectionChange={handleSelectionChange}
+                checkboxSelection
+              />
             </div>
           </Card>
           <Button

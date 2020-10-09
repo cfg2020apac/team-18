@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "../handsonhk_logo.png";
 
 import { MuiThemeProvider, createMuiTheme, makeStyles, createStyles } from "@material-ui/core/styles";
 import { CssBaseline, Drawer, Divider, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core"; 
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: "center",
       margin: 15,
       marginTop: 50,
-      marginBottom: 50,
+      // marginBottom: 50,
     },
     list: {
       marginTop: 50,
@@ -67,7 +68,7 @@ export const Sidebar = () => {
     >
       <div className={classes.toolbar}>
         <div className={classes.title}>
-          HandsOn
+          <img style={{ height: 100, cursor: "pointer" }} src={Logo} onClick={handleSidebarClick("")} />
         </div>
       </div>
       <Divider />
@@ -84,17 +85,17 @@ export const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Reports" />
         </ListItem>
+        <ListItem button key="analytics" className={classes.listItem} onClick={handleSidebarClick("import_data")}>
+          <ListItemIcon>
+            <DataUsageIcon />
+          </ListItemIcon>
+          <ListItemText primary="Import Data" />
+        </ListItem>
         <ListItem button key="voluteers" className={classes.listItem}>
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary="Volunteers" />
-        </ListItem>
-        <ListItem button key="analytics" className={classes.listItem}>
-          <ListItemIcon>
-            <DataUsageIcon />
-          </ListItemIcon>
-          <ListItemText primary="Analytics" />
         </ListItem>
       </List>
     </Drawer>
