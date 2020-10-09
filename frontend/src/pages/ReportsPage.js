@@ -12,6 +12,7 @@ import {
 
 import { Animation } from '@devexpress/dx-react-chart';
 import {VolunteerEventChart} from '../components/VolunteerEventChart'
+import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
 import {VolunteerAgeChart} from '../components/VolunteerAgeChart'
 import {VolunteerSkillsChart} from '../components/VolunteerSkillsChart'
 
@@ -27,13 +28,14 @@ const volunteerData = [
   {name: "Amy Chan", email: "amyc@gmail.com", age: 17, gender: "female", language: "Chinese", skills: ["IT"], interests: ["food", "animals"] },
   {name: "John Stone", email: "js@gmail.com", age: 27, gender: "male", language: "English", skills: ["IT", "Finance"], interests: ["food", "elderly"] },
   {name: "Emily Wong", email: "ew@gmail.com", age: 42, gender: "other", language: "Both", skills: ["Teaching"], interests: ["homeless","animals"] },
-  {name: "Jane Doe", email: "jd@gmail.com", age: 19, gender: "female", language: "Chinese", skills: ["Finance", "Art"], interests: ["food", "homeless"] },
+  {name: "Jane Doe", email: "jd@gmail.com", age: 19, gender: "non-binary", language: "Chinese", skills: ["Finance", "Art"], interests: ["food", "homeless"] },
   {name: "Jack Frost", email: "jf@gmail.com", age: 45, gender: "male", language: "Both", skills: ["IT"], interests: ["food", "animals"] },
 ]
 
 
 
 export const ReportsPage = () => {
+  const [openGenderPie, setOpenGenderPie] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
   const [openAge, setOpenAge] = useState(false);
   const [openSkills, setOpenSkills] = useState(false);
@@ -41,6 +43,10 @@ export const ReportsPage = () => {
     <Button onClick={()=>setOpenEvent(!openEvent)}>Open Event</Button>
     {openEvent && 
       <VolunteerEventChart data={eventData}></VolunteerEventChart>
+    }
+    <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Open Pie</Button>
+    {openGenderPie && 
+      <VolunteerGenderChart data={volunteerData}></VolunteerGenderChart>
     }
     <Button onClick={()=>setOpenAge(!openAge)}>Open Age</Button>
     {openAge && 
@@ -50,7 +56,6 @@ export const ReportsPage = () => {
     {openSkills && 
       <VolunteerSkillsChart data={volunteerData}></VolunteerSkillsChart>
     }
-    
   </div>)
 }
 
