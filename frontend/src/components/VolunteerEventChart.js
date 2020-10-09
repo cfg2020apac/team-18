@@ -1,6 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Chart, SeriesTemplate, CommonSeriesSettings, Title } from 'devextreme-react/chart';
+import { Chart, SeriesTemplate, CommonSeriesSettings, Title, Export } from 'devextreme-react/chart';
 
 
 export const VolunteerEventChart = (props) => {
@@ -22,6 +22,7 @@ export const VolunteerEventChart = (props) => {
        
         subtitle="as of October 2020"
       />
+      <Export enabled = {true}/>
     </Chart>
     
   )
