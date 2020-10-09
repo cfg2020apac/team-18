@@ -15,7 +15,7 @@ import {VolunteerEventChart} from '../components/VolunteerEventChart'
 import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
 import {VolunteerAgeChart} from '../components/VolunteerAgeChart'
 import {VolunteerSkillsChart} from '../components/VolunteerSkillsChart'
-
+import {VolunteerLanguageChart} from '../components/VolunteerLanguageChart'
 const eventData = [
   { id: 'd1', eventName: 'Elder Academy', volunteerAttendance: 23},
   { id: 'd2', eventName: 'Blood Donation Drive', volunteerAttendance: 6 },
@@ -39,6 +39,7 @@ export const ReportsPage = () => {
   const [openEvent, setOpenEvent] = useState(false);
   const [openAge, setOpenAge] = useState(false);
   const [openSkills, setOpenSkills] = useState(false);
+  const [openLang, setOpenLang] = useState(false);
   return (<div>
     <Button onClick={()=>setOpenEvent(!openEvent)}>Open Event</Button>
     {openEvent && 
@@ -51,6 +52,10 @@ export const ReportsPage = () => {
     <Button onClick={()=>setOpenAge(!openAge)}>Open Age</Button>
     {openAge && 
       <VolunteerAgeChart data={volunteerData}></VolunteerAgeChart>
+    }
+    <Button onClick={()=>setOpenLang(!openLang)}>Open Language</Button>
+    {openLang && 
+      <VolunteerLanguageChart data={volunteerData}></VolunteerLanguageChart>
     }
     <Button onClick={()=>setOpenSkills(!openSkills)}>Open Skills</Button>
     {openSkills && 
