@@ -1,50 +1,90 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 
-import { Chart, Series } from 'devextreme-react/chart';
+import { Chart, Series, CommonSeriesSettings, Legend, ValueAxis, Title, Export, Tooltip } from 'devextreme-react/chart';
 
 const parseData = (data) => {
-    let ageRange = {"15to20": 0, "20to30": 0, "30to40": 0, "40to50": 0, "50to60":0}
+    let ageRange = {"15to20": {count:0}, "20to30": {count:0}, "30to40": {count:0}, "40to50": {count:0}, "50to60":{count:0}, "60+": {count:0}}
+    let listOfInterests = []
     for (let volunteer of data){
+        let ageRangeToSet;
         if (volunteer.age <=20){
-            ageRange["15to20"]+=1;
+            ageRangeToSet = "15to20"
         }
         else if (volunteer.age <=30) {
-            ageRange["20to30"]+=1;
-        }
+            ageRangeToSet = "20to30"        }
         else if (volunteer.age <=40){
-            ageRange["30to40"]+=1;
-        }
+            ageRangeToSet = "30to40"        }
         else if (volunteer.age <=50){
-            ageRange["40to50"]+=1;
-        }
+            ageRangeToSet = "40to50"        }
         else if (volunteer.age <=60){
-            ageRange["50to60"]+=1;
+            ageRangeToSet = "50to60"        }
+        else{
+            ageRangeToSet = "60+"
         }
-        
+        ageRange[ageRangeToSet].count +=1
+        for(let interest of volunteer.interests){
+            if(listOfInterests.indexOf(interest)===-1){
+                listOfInterests.push(interest)
+            }
+            if(ageRange[ageRangeToSet][interest]){
+                ageRange[ageRangeToSet][interest] += 1
+            } else {
+                ageRange[ageRangeToSet][interest] = 1
+            }
+        }
     }
-    
+    console.log(listOfInterests)
     console.log(ageRange);
-    return ["15to20", "20to30", "30to40", "40to50", "50to60" ].map((val)=>{
-        return {
+    const chartList = ["15to20", "20to30", "30to40", "40to50", "50to60", "60+"].map((val)=>{
+        let returnJSON = {
             ageRange: val,
-            num: ageRange[val]
+            num: ageRange[val].count
         }
+        for(let interest of listOfInterests){
+            returnJSON[interest] = ageRange[val][interest] ? ageRange[val][interest] : 0 
+        }
+        return returnJSON
     })
+    console.log(chartList)
+    return {
+        chartList,
+    }
 }
 
-
 export const VolunteerAgeChart = (props) => {
+    const {chartList} = parseData(props.data)
+    console.log(chartList)
   return (
     <div>
       <Paper>
-      <Chart id="skills" dataSource={parseData(props.data)} title = "Volunteer Age Chart">
+      <Chart id="age" dataSource={chartList} title = "Volunteer Age and Interests">
+        <CommonSeriesSettings argumentField="ageRange" type="stackedBar"/>
         <Series
-          valueField="num"
-          argumentField="ageRange"
-          name="Volunteer Age Distribution"
-          type="bar"
-          color="#ffaa55" />
+          valueField="food"
+          name="food"
+        />
+        <Series
+          valueField="animals"
+          name="animals"
+        />
+        <Series
+          valueField="elderly"
+          name="elderly"
+        />
+        <Series
+          valueField="homeless"
+          name="homeless"
+        />
+        <ValueAxis position="left">
+            <Title text="Number of volunteers"></Title>
+        </ValueAxis>
+        <Legend
+          verticalAlignment="bottom"
+          horizontalAlignment="center"
+          itemTextPosition="top"
+        />
+        <Export enabled={true} />
       </Chart>
       </Paper>
     </div>
