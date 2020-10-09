@@ -13,6 +13,8 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 import {VolunteerEventChart} from '../components/VolunteerEventChart'
 import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
+import {VolunteerAgeChart} from '../components/VolunteerAgeChart'
+import {VolunteerSkillsChart} from '../components/VolunteerSkillsChart'
 
 const eventData = [
   { id: 'd1', eventName: 'Elder Academy', volunteerAttendance: 23},
@@ -33,18 +35,29 @@ const volunteerData = [
 
 
 export const ReportsPage = () => {
-  const [openBar, setOpenBar] = useState(false);
   const [openGenderPie, setOpenGenderPie] = useState(false);
+  const [openEvent, setOpenEvent] = useState(false);
+  const [openAge, setOpenAge] = useState(false);
+  const [openSkills, setOpenSkills] = useState(false);
   return (<div>
-    <Button onClick={()=>setOpenBar(!openBar)}>Open Bar</Button>
-    {openBar && 
+    <Button onClick={()=>setOpenEvent(!openEvent)}>Open Event</Button>
+    {openEvent && 
       <VolunteerEventChart data={eventData}></VolunteerEventChart>
     }
     <Button onClick={()=>setOpenGenderPie(!openGenderPie)}>Open Pie</Button>
     {openGenderPie && 
       <VolunteerGenderChart data={volunteerData}></VolunteerGenderChart>
     }
+    <Button onClick={()=>setOpenAge(!openAge)}>Open Age</Button>
+    {openAge && 
+      <VolunteerAgeChart data={volunteerData}></VolunteerAgeChart>
+    }
+    <Button onClick={()=>setOpenSkills(!openSkills)}>Open Skills</Button>
+    {openSkills && 
+      <VolunteerSkillsChart data={volunteerData}></VolunteerSkillsChart>
+    }
   </div>)
 }
+
 
 
