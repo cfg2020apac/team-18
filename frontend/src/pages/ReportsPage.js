@@ -24,6 +24,7 @@ import {VolunteerGenderChart} from '../components/VolunteerGenderChart'
 import {VolunteerAgeChart} from '../components/VolunteerAgeChart'
 import {VolunteerSkillsChart} from '../components/VolunteerSkillsChart'
 import {VolunteerLanguageChart} from '../components/VolunteerLanguageChart'
+import {TotalOverYears} from '../components/AgeOverYear'
 const eventData = [
   { id: 'd1', eventName: 'Elder Academy', volunteerAttendance: 23},
   { id: 'd2', eventName: 'Blood Donation Drive', volunteerAttendance: 6 },
@@ -68,6 +69,8 @@ export const ReportsPage = () => {
   const [openAge, setOpenAge] = useState(false);
   const [openSkills, setOpenSkills] = useState(false);
   const [openLang, setOpenLang] = useState(false);
+  const [openNum, setOpenNum] = useState(false);
+
 
   const classes = useStyles();
   return (
@@ -103,6 +106,12 @@ export const ReportsPage = () => {
         <Button onClick={()=>setOpenSkills(!openSkills)}>Volunteer Skills</Button>
         {openSkills && 
           <VolunteerSkillsChart data={volunteerData}></VolunteerSkillsChart>
+        }
+      </Box>
+      <Box className={classes.box}>
+        <Button onClick={()=>setOpenNum(!openNum)}>Volunteer Trend</Button>
+        {openNum && 
+          <TotalOverYears data={[{year:2015,total:5000}, {year:2016, total: 5500}, {year:2017, total: 6500},{year:2018, total: 8500},{year:2019, total: 10000}]}></TotalOverYears>
         }
       </Box>
     </div>
